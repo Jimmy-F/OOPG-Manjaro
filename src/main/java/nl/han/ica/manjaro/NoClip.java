@@ -1,3 +1,5 @@
+package nl.han.ica.manjaro;
+
 public class NoClip extends PowerUp {
 
 	private int cooldown;
@@ -6,8 +8,8 @@ public class NoClip extends PowerUp {
 
 	}
 
-	public NoClip(Main game) {
-
+	public NoClip(Manjaro game) {
+		super(game);
 	}
 
 }

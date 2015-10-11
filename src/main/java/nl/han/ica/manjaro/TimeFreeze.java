@@ -1,3 +1,5 @@
+package nl.han.ica.manjaro;
+
 public class TimeFreeze extends PowerUp {
 
 	private int cooldown;
@@ -10,8 +12,8 @@ public class TimeFreeze extends PowerUp {
 
 	}
 
-	public TimeFreeze(Main game) {
-
+	public TimeFreeze(Manjaro game) {
+		super(game);
 	}
 
 }

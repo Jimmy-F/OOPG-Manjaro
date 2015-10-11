@@ -1,23 +1,27 @@
-import java.ICollidableWithGameObjects;
+package nl.han.ica.manjaro;
+
+import nl.han.ica.OOPDProcessingEngineHAN.Collision.ICollidableWithGameObjects;
+import nl.han.ica.OOPDProcessingEngineHAN.Objects.GameObject;
+import processing.core.PGraphics;
+
 import java.util.List;
 
 public class Player extends GameObject implements ICollidableWithGameObjects {
 
 	private int size;
 
-	private Main main;
+	private Manjaro game;
 
 	private Player player;
 
 	private GameObject gameObject;
 
-	private Player player;
 
 	public void update() {
 
 	}
 
-	public Player(Main game) {
+	public Player(Manjaro game) {
 
 	}
 
@@ -27,6 +31,18 @@ public class Player extends GameObject implements ICollidableWithGameObjects {
 
 	public void collisionOccurred(List collidedObjects) {
 
+	}
+
+	@Override
+	public void gameObjectCollisionOccurred(List<GameObject> collidedGameObjects) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void draw(PGraphics g) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

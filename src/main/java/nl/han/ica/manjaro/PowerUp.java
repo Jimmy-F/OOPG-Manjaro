@@ -1,12 +1,15 @@
+package nl.han.ica.manjaro;
+
+
 public class PowerUp {
 
 	private int cooldown;
 
 	private int speedValue;
 
-	private Main main;
+	private Manjaro manjaro;
 
-	public PowerUp(Main game) {
+	public PowerUp(Manjaro game) {
 
 	}
 

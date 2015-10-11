@@ -1,24 +1,28 @@
-import java.ICollidableWithGameObjects;
+package nl.han.ica.manjaro;
+
+import nl.han.ica.OOPDProcessingEngineHAN.Collision.ICollidableWithGameObjects;
 import java.util.List;
 
-public class Antimatter extends GameObject, Collectable {
+import nl.han.ica.OOPDProcessingEngineHAN.Objects.GameObject;
+
+public class Antimatter extends Collectable implements ICollidableWithGameObjects {
 
 	private int scoreValue;
 
-	private Main main;
+	private Manjaro main;
 
 	private GameObject gameObject;
 
-	public Antimatter(Main game) {
-
+	public Antimatter(Manjaro game) {
+		super(game);
 	}
 
 	public void update() {
 
 	}
 
-	public Void getScore() {
-		return null;
+	public void getScore() {
+
 	}
 
 	public void collisionOccurred(List collidedObjects) {

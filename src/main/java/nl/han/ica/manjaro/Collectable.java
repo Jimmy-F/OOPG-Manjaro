@@ -1,4 +1,8 @@
-import java.ICollidableWithGameObjects;
+package nl.han.ica.manjaro;
+import nl.han.ica.OOPDProcessingEngineHAN.Collision.ICollidableWithGameObjects;
+import nl.han.ica.OOPDProcessingEngineHAN.Objects.GameObject;
+import processing.core.PGraphics;
+
 import java.util.List;
 
 public class Collectable extends GameObject implements ICollidableWithGameObjects {
@@ -9,11 +13,9 @@ public class Collectable extends GameObject implements ICollidableWithGameObject
 
 	private int posY;
 
-	private Main main;
+	private Manjaro main;
 
-	private Main main;
-
-	public Collectable(Main game) {
+	public Collectable(Manjaro game) {
 
 	}
 
@@ -25,8 +27,16 @@ public class Collectable extends GameObject implements ICollidableWithGameObject
 
 	}
 
-	public void collisionOccurrec(List collidedObjects) {
+	@Override
+	public void gameObjectCollisionOccurred(List<GameObject> collidedGameObjects) {
+		// TODO Auto-generated method stub
+		
+	}
 
+	@Override
+	public void draw(PGraphics g) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

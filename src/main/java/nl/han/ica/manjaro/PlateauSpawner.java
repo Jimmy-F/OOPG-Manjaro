@@ -1,6 +1,10 @@
-import java.IAlarmListener;
+package nl.han.ica.manjaro;
 
-public class PlateauSpawner {
+import java.util.Random;
+
+import nl.han.ica.OOPDProcessingEngineHAN.Alarm.IAlarmListener;
+
+public class PlateauSpawner implements IAlarmListener {
 
 	private float plateausPerSecond;
 
@@ -8,9 +12,9 @@ public class PlateauSpawner {
 
 	private int fallSpace;
 
-	private Main main;
+	private Manjaro game;
 
-	public PlateauSpawner(Main game, float plateausPerSecond) {
+	public PlateauSpawner(Manjaro game, float plateausPerSecond) {
 
 	}
 

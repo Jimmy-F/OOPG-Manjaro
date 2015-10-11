@@ -1,3 +1,5 @@
+package nl.han.ica.manjaro;
+
 public class SpeedUp extends PowerUp {
 
 	private int cooldown;
@@ -8,8 +10,8 @@ public class SpeedUp extends PowerUp {
 
 	}
 
-	public SpeedUp(Main game) {
-
+	public SpeedUp(Manjaro game) {
+		super(game);
 	}
 
 }

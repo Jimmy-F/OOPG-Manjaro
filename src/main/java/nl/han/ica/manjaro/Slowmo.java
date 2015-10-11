@@ -1,3 +1,5 @@
+package nl.han.ica.manjaro;
+
 public class Slowmo extends PowerUp {
 
 	private int cooldown;
@@ -10,8 +12,8 @@ public class Slowmo extends PowerUp {
 
 	}
 
-	public Slowmo(Main game) {
-
+	public Slowmo(Manjaro game) {
+		super(game);
 	}
 
 }
