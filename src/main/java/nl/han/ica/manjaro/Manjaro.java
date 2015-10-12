@@ -18,7 +18,7 @@ public class Manjaro extends GameEngine {
         PApplet.main(new String[]{"nl.han.ica.manjaro.Manjaro"});
     }
 
-	//private Player player;
+	private Player player;
 
 	private int score;
 
@@ -37,6 +37,9 @@ public class Manjaro extends GameEngine {
 		int worldHeight = 700;
 		
 		createViewWithoutViewport(worldWidth, worldHeight);
+		
+		// Spawn the player
+		spawnPlayer();
 
 	}
 
@@ -66,5 +69,9 @@ public class Manjaro extends GameEngine {
 	public void refreshDashboard() {
 
 	}
-
+	
+	public void spawnPlayer() {
+		player = new Player(this, 25);
+		addGameObject(player, 100, 100);
+	}
 }
