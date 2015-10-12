@@ -1,4 +1,4 @@
-package nl.han.ica.waterworld;
+Ppackage nl.han.ica.waterworld;
 
 import nl.han.ica.OOPDProcessingEngineHAN.Dashboard.Dashboard;
 import nl.han.ica.OOPDProcessingEngineHAN.Engine.GameEngine;

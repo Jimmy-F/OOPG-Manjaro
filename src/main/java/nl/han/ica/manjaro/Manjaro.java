@@ -1,7 +1,10 @@
 package nl.han.ica.manjaro;
 
+import java.util.List;
+
 import nl.han.ica.OOPDProcessingEngineHAN.Dashboard.Dashboard;
 import nl.han.ica.OOPDProcessingEngineHAN.Engine.GameEngine;
+import nl.han.ica.OOPDProcessingEngineHAN.Objects.GameObject;
 import nl.han.ica.OOPDProcessingEngineHAN.Objects.Sprite;
 import nl.han.ica.OOPDProcessingEngineHAN.Persistence.FilePersistence;
 import nl.han.ica.OOPDProcessingEngineHAN.Persistence.IPersistence;
@@ -27,7 +30,7 @@ public class Manjaro extends GameEngine {
 	//private Persistence persistence;
 
 	private Dashboard dashboard;
-
+	
 	public void update() {
 
 	}
@@ -36,6 +39,10 @@ public class Manjaro extends GameEngine {
 		int worldWidth = 500;
 		int worldHeight = 700;
 		
+		Collectable c = new Collectable(this, 20, 0, 800, 1);
+		addGameObject(c, 0, getHeight());
+		
+		createPlateauSpawner();
 		createViewWithoutViewport(worldWidth, worldHeight);
 		
 		// Spawn the player
@@ -43,15 +50,18 @@ public class Manjaro extends GameEngine {
 
 	}
 
+	/**
+	 * Maakt de plateau spawner aan
+	 */
+	public void createPlateauSpawner() {
+		PlateauSpawner plateauSpawner = new PlateauSpawner(this, 1, 80);
+	}
+	
 	public void createViewWithoutViewport(int screenWidth, int screenHeight) {
 		View view = new View(screenWidth, screenHeight);
 		view.setBackground(0, 0, 0);
 		setView(view);
 		size(screenWidth, screenHeight);
-	}
-
-	public void increaseSpeed() {
-
 	}
 
 	public void spawnPlateau() {

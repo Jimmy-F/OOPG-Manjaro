@@ -13,18 +13,25 @@ public class Collectable extends GameObject implements ICollidableWithGameObject
 
 	private int posY;
 
-	private Manjaro main;
+	private Manjaro game;
 
-	public Collectable(Manjaro game) {
-
+	public Collectable(Manjaro game, int size, int posX, int posY, float travelSpeed, int scoreValue) {
+		this.scoreValue = scoreValue;
+		this.game = game;
+		this.posX = posX;
+		this.posY = posY;
+		setSpeed(travelSpeed);
+		setHeight(size);
+		setWidth(size);
 	}
 
 	public void update() {
-
+		if (getY() < 0 - getHeight())
+			game.deleteGameObject(this);
 	}
 
-	public void getScore() {
-
+	public int getScore() {
+		return this.scoreValue;
 	}
 
 	@Override
@@ -35,7 +42,10 @@ public class Collectable extends GameObject implements ICollidableWithGameObject
 
 	@Override
 	public void draw(PGraphics g) {
-		// TODO Auto-generated method stub
+		g.ellipseMode(g.CORNER);
+		g.stroke(0, 50, 200, 100);
+		g.fill(255,0,0);
+		g.ellipse(0, getY(), getWidth(), getHeight());
 		
 	}
 
