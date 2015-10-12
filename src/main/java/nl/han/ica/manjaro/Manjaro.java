@@ -24,23 +24,22 @@ public class Manjaro extends GameEngine {
 	private Player player;
 
 	private int score;
-
-	private GameEngine gameEngine;
-
-	//private Persistence persistence;
-
-	private Dashboard dashboard;
 	
 	public void update() {
 
+	}
+	
+	public void setScore(int scoreValue) {
+		score += scoreValue;
+	}
+	
+	public int getScore() {
+		return score;
 	}
 
 	public void setupGame() {
 		int worldWidth = 500;
 		int worldHeight = 700;
-		
-		Collectable c = new Collectable(this, 20, 0, 800, 1);
-		addGameObject(c, 0, getHeight());
 		
 		createPlateauSpawner();
 		createViewWithoutViewport(worldWidth, worldHeight);
@@ -54,7 +53,7 @@ public class Manjaro extends GameEngine {
 	 * Maakt de plateau spawner aan
 	 */
 	public void createPlateauSpawner() {
-		PlateauSpawner plateauSpawner = new PlateauSpawner(this, 1, 80);
+		PlateauSpawner plateauSpawner = new PlateauSpawner(this, 1, 150);
 	}
 	
 	public void createViewWithoutViewport(int screenWidth, int screenHeight) {
@@ -64,9 +63,6 @@ public class Manjaro extends GameEngine {
 		size(screenWidth, screenHeight);
 	}
 
-	public void spawnPlateau() {
-
-	}
 
 	public void initializePersistence() {
 

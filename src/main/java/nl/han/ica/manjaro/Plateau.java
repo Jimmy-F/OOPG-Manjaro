@@ -18,7 +18,7 @@ public class Plateau extends GameObject implements ICollidableWithGameObjects {
 	
 	private boolean leftPlateau;
 
-	private int coordinate;
+	private float coordinate;
 	/**
 	 * 
 	 */
@@ -42,7 +42,7 @@ public class Plateau extends GameObject implements ICollidableWithGameObjects {
 		setWidth(size);
 	}
 	
-	public Plateau(Manjaro game, int size, float travelspeed, boolean leftPlateau, int coordinate) {
+	public Plateau(Manjaro game, int size, float travelspeed, boolean leftPlateau, float coordinate) {
 		this.game = game;
 		this.travelspeed = travelspeed;
 		this.leftPlateau = leftPlateau;
