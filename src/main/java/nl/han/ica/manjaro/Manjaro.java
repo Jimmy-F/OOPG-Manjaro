@@ -1,20 +1,12 @@
 package nl.han.ica.manjaro;
 
-import java.util.List;
-
 import nl.han.ica.OOPDProcessingEngineHAN.Dashboard.Dashboard;
 import nl.han.ica.OOPDProcessingEngineHAN.Engine.GameEngine;
-import nl.han.ica.OOPDProcessingEngineHAN.Objects.GameObject;
-import nl.han.ica.OOPDProcessingEngineHAN.Objects.Sprite;
-import nl.han.ica.OOPDProcessingEngineHAN.Persistence.FilePersistence;
-import nl.han.ica.OOPDProcessingEngineHAN.Persistence.IPersistence;
-import nl.han.ica.OOPDProcessingEngineHAN.Sound.Sound;
-import nl.han.ica.OOPDProcessingEngineHAN.Tile.TileMap;
-import nl.han.ica.OOPDProcessingEngineHAN.Tile.TileType;
-import nl.han.ica.OOPDProcessingEngineHAN.View.EdgeFollowingViewport;
+import nl.han.ica.OOPDProcessingEngineHAN.Objects.TextObject;
 import nl.han.ica.OOPDProcessingEngineHAN.View.View;
 import processing.core.PApplet;
 
+@SuppressWarnings("serial")
 public class Manjaro extends GameEngine {
 	
 	public static void main(String[] args) {
@@ -25,12 +17,15 @@ public class Manjaro extends GameEngine {
 
 	private int score;
 	
+	private TextObject dashboardText;
+	
 	public void update() {
 
 	}
 	
 	public void setScore(int scoreValue) {
 		score += scoreValue;
+		refreshDashboard();
 	}
 	
 	public int getScore() {
@@ -42,6 +37,8 @@ public class Manjaro extends GameEngine {
 		int worldHeight = 700;
 		
 		createPlateauSpawner();
+		createDashboard(500,500);
+		refreshDashboard();
 		createViewWithoutViewport(worldWidth, worldHeight);
 		
 		// Spawn the player
@@ -52,13 +49,14 @@ public class Manjaro extends GameEngine {
 	/**
 	 * Maakt de plateau spawner aan
 	 */
+	@SuppressWarnings("unused")
 	public void createPlateauSpawner() {
 		PlateauSpawner plateauSpawner = new PlateauSpawner(this, 1, 150);
 	}
 	
 	public void createViewWithoutViewport(int screenWidth, int screenHeight) {
 		View view = new View(screenWidth, screenHeight);
-		view.setBackground(0, 0, 0);
+		view.setBackground(100,100,100);
 		setView(view);
 		size(screenWidth, screenHeight);
 	}
@@ -68,12 +66,16 @@ public class Manjaro extends GameEngine {
 
 	}
 
-	public void createDashboard() {
-
+	public void createDashboard(int width, int height) {
+		Dashboard dashboard = new Dashboard(0,0, width, height);
+		dashboardText = new TextObject("", 20);
+		dashboardText.setText("iets");
+		dashboard.addGameObject(dashboardText, 300, 40);
+		addDashboard(dashboard);
 	}
 
 	public void refreshDashboard() {
-
+		dashboardText.setText("Score: " + score);
 	}
 	
 	public void spawnPlayer() {

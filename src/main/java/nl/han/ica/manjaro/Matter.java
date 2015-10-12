@@ -7,18 +7,8 @@ import processing.core.PGraphics;
 
 public class Matter extends Collectable implements ICollidableWithGameObjects {
 
-	private int scoreValue;
-
-	public Matter(Manjaro game, float travelSpeed, int scoreValue ) {
-		super(game, travelSpeed, scoreValue);
-	}
-
-	public void update() {
-
-	}
-
-	public int getScore() {
-		return scoreValue;
+	public Matter(Manjaro game, int posX, float travelSpeed, int scoreValue ) {
+		super(game, posX, travelSpeed, scoreValue);
 	}
 	
 	@Override
@@ -26,7 +16,7 @@ public class Matter extends Collectable implements ICollidableWithGameObjects {
 		g.ellipseMode(PConstants.CORNER);
 		g.stroke(0, 50, 200, 100);
 		g.fill(0,255,0);
-		g.ellipse(0, getY(), getWidth(), getHeight());
+		g.ellipse(getPosX(), getY(), getWidth(), getHeight());
 	}
 
 }

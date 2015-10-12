@@ -13,14 +13,22 @@ public abstract class Collectable extends GameObject implements ICollidableWithG
 	private Manjaro game;
 	
 	private int size;
+	
+	private int posX;
 
-	public Collectable(Manjaro game, float travelSpeed, int scoreValue) {
+	public Collectable(Manjaro game, int posX, float travelSpeed, int scoreValue) {
 		this.scoreValue = scoreValue;
 		this.game = game;
 		this.size = 25;
-		setSpeed(travelSpeed);
+		this.posX = posX;
+		setX(posX);
+		setySpeed(-travelSpeed);
 		setHeight(size);
 		setWidth(size);
+	}
+
+	public int getPosX() {
+		return posX;
 	}
 
 
@@ -42,6 +50,8 @@ public abstract class Collectable extends GameObject implements ICollidableWithG
 		for (GameObject g : collidedGameObjects) {
 			if (g instanceof Player) {
 				game.setScore(getScore());
+				game.deleteGameObject(this);
+				game.refreshDashboard();
 			}
 		}
 		
@@ -52,7 +62,7 @@ public abstract class Collectable extends GameObject implements ICollidableWithG
 		g.ellipseMode(PConstants.CORNER);
 		g.stroke(0, 50, 200, 100);
 		g.fill(255,0,0);
-		g.ellipse(0, getY(), getWidth(), getHeight());
+		g.ellipse(posX, getY(), getWidth(), getHeight());
 	}
 
 }
