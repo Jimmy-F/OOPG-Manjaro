@@ -2,6 +2,7 @@ package nl.han.ica.manjaro;
 
 import nl.han.ica.OOPDProcessingEngineHAN.Collision.ICollidableWithGameObjects;
 import nl.han.ica.OOPDProcessingEngineHAN.Objects.GameObject;
+import nl.han.ica.waterworld.Swordfish;
 import processing.core.PGraphics;
 
 import java.util.List;
@@ -22,8 +23,7 @@ public class Player extends GameObject implements ICollidableWithGameObjects {
             setX(0);
         }
         if (getY()<=0) {
-            setySpeed(0);
-            setY(0);
+        	game.deleteGameObject(this);
         }
         if (getX()>=game.getWidth()-size) {
             setxSpeed(0);
@@ -33,6 +33,8 @@ public class Player extends GameObject implements ICollidableWithGameObjects {
             setySpeed(0);
             setY(game.getHeight() - size);
         }
+        
+        setDirectionSpeed(180, 3);
 	}
 
 	/**
@@ -43,7 +45,7 @@ public class Player extends GameObject implements ICollidableWithGameObjects {
 		this.game = game;
 		this.size = size;
 		
-        setFriction(0.05f);
+        setFriction(0.01f);
         
 		/* De volgende regels zijn in een zelfgekend object nodig
         om collisiondetectie mogelijk te maken. */
@@ -56,26 +58,19 @@ public class Player extends GameObject implements ICollidableWithGameObjects {
         if (keyCode == game.LEFT) {
             setDirectionSpeed(270, speed);
         }
-        if (keyCode == game.UP) {
-            setDirectionSpeed(0, speed);
-        }
         if (keyCode == game.RIGHT) {
             setDirectionSpeed(90, speed);
         }
-        if (keyCode == game.DOWN) {
-            setDirectionSpeed(180, speed);
-        }
-	}
-
-	public void collisionOccurred(List collidedObjects) {
-
 	}
 
 	@Override
-	public void gameObjectCollisionOccurred(List<GameObject> collidedGameObjects) {
-		// TODO Auto-generated method stub
-		
-	}
+    public void gameObjectCollisionOccurred(List<GameObject> collidedGameObjects) {
+        for (GameObject g:collidedGameObjects) {
+            if (g instanceof Plateau) {
+                setY(g.getY()-25);
+            }
+        }
+    }
 
 	@Override
 	public void draw(PGraphics g) {
@@ -84,5 +79,4 @@ public class Player extends GameObject implements ICollidableWithGameObjects {
         g.fill(255, 18, 18, 90);
         g.ellipse(getX(), getY(), size, size);
 	}
-
 }
