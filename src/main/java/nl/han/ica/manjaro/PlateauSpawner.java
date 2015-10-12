@@ -1,11 +1,9 @@
 package nl.han.ica.manjaro;
 
-import java.util.List;
 import java.util.Random;
 
 import nl.han.ica.OOPDProcessingEngineHAN.Alarm.Alarm;
 import nl.han.ica.OOPDProcessingEngineHAN.Alarm.IAlarmListener;
-import nl.han.ica.OOPDProcessingEngineHAN.Objects.GameObject;
 
 public class PlateauSpawner implements IAlarmListener {
 
@@ -13,27 +11,27 @@ public class PlateauSpawner implements IAlarmListener {
 
 	private Random random;
 	
-	private float travelSpeed;
+	private static float travelSpeed;
 
-	private int fallSpace;
+	private static float fallSpace;
 
 	private Manjaro game;
 
-	public PlateauSpawner(Manjaro game, float plateausPerSecond, int fallSpace) {
+	public PlateauSpawner(Manjaro game, float plateausPerSecond, float fallSpace) {
 		this.plateausPerSecond = plateausPerSecond;
-		this.travelSpeed = 1;
+		PlateauSpawner.travelSpeed = 1;
 		this.game = game;
-		this.fallSpace = fallSpace;
+		PlateauSpawner.fallSpace = fallSpace;
 		random = new Random();
 		startAlarm();
 	}
 
-	public void setSpeed(float travelSpeed) {
-		this.travelSpeed = travelSpeed;
+	public void setTravelSpeed(float travelSpeed) {
+		PlateauSpawner.travelSpeed = travelSpeed;
 	}
 	
 	public float getTravelSpeed() {
-		return this.travelSpeed;
+		return PlateauSpawner.travelSpeed;
 	}
 
 	public void startAlarm() {
@@ -45,12 +43,24 @@ public class PlateauSpawner implements IAlarmListener {
 	
 	@Override
 	public void triggerAlarm(String alarmName) {
-		int plateauSize = random.nextInt(game.getWidth() - fallSpace);
-		Plateau p1 = new Plateau(game, plateauSize, 1, true);
-		Plateau p2 = new Plateau(game, (game.getWidth() - plateauSize), 1, false, plateauSize + fallSpace);
+		int spawnCollectable = random.nextInt(3);
+		boolean spawnMatter = random.nextBoolean();
+		int plateauSize = random.nextInt(game.getWidth() - (int)fallSpace);
+		Plateau p1 = new Plateau(game, plateauSize, travelSpeed, true);
+		Plateau p2 = new Plateau(game, (game.getWidth() - plateauSize), travelSpeed, false, plateauSize + fallSpace);
+		
+			
 		game.addGameObject(p1, 0, game.getHeight());
 		game.addGameObject(p2, (plateauSize + fallSpace), game.getHeight());
-		travelSpeed += 1;
+		travelSpeed += 0.015;
+		plateausPerSecond += 0.012;
+		if (fallSpace > 40)
+			fallSpace -= 0.8;
+		//if (spawnCollectable == 1 && !spawnMatter) 
+			Antimatter a = new Antimatter(game, (float)(travelSpeed - 0.01), random.nextInt(10));
+			game.addGameObject(a, plateauSize, (game.getHeight() -a.getSize()));
+			Matter m = new Matter(game, (float)(travelSpeed - 0.01), 10);
+			game.addGameObject(m, 300, (game.getHeight() -a.getSize()));
 		startAlarm();
 	}
 
