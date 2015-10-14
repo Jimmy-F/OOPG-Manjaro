@@ -12,8 +12,8 @@ public class TimeFreeze extends PowerUp {
 
 	}
 
-	public TimeFreeze(Manjaro game) {
-		super(game);
+	public TimeFreeze(Manjaro game, int cooldown) {
+		super(game, cooldown);
 	}
 
 }

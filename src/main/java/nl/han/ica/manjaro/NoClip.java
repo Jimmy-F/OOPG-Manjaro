@@ -8,8 +8,8 @@ public class NoClip extends PowerUp {
 
 	}
 
-	public NoClip(Manjaro game) {
-		super(game);
+	public NoClip(Manjaro game, int cooldown) {
+		super(game, cooldown);
 	}
 
 }

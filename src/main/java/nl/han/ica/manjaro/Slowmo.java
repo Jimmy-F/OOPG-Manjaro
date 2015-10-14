@@ -12,8 +12,8 @@ public class Slowmo extends PowerUp {
 
 	}
 
-	public Slowmo(Manjaro game) {
-		super(game);
+	public Slowmo(Manjaro game, int cooldown) {
+		super(game, cooldown);
 	}
 
 }
