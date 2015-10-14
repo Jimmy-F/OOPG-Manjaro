@@ -24,6 +24,7 @@ public class Player extends GameObject implements ICollidableWithGameObjects {
         }
         if (getY()<=0) {
         	game.deleteGameObject(this);
+        	game.gameOver();
         }
         if (getX()>=game.getWidth()-size) {
             setxSpeed(0);

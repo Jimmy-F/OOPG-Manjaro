@@ -6,7 +6,6 @@ import processing.core.PGraphics;
 
 public class Antimatter extends Collectable implements ICollidableWithGameObjects {
 
-
 	public Antimatter(Manjaro game, int posX, float travelSpeed, int scoreValue) {
 		super(game, posX, travelSpeed, scoreValue);
 	}

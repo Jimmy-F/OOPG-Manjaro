@@ -10,7 +10,7 @@ public class PowerUp {
 	private Manjaro manjaro;
 
 	public PowerUp(Manjaro game) {
-
+		
 	}
 
 	public void activate() {

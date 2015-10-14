@@ -1,7 +1,6 @@
 package nl.han.ica.manjaro;
 
 import java.util.Random;
-
 import nl.han.ica.OOPDProcessingEngineHAN.Alarm.Alarm;
 import nl.han.ica.OOPDProcessingEngineHAN.Alarm.IAlarmListener;
 
@@ -22,7 +21,7 @@ public class PlateauSpawner implements IAlarmListener {
 		PlateauSpawner.travelSpeed = 1;
 		this.game = game;
 		PlateauSpawner.fallSpace = fallSpace;
-		random = new Random();
+		this.random = new Random();
 		startAlarm();
 	}
 
