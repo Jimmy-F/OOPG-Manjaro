@@ -2,7 +2,6 @@ package nl.han.ica.manjaro;
 
 import nl.han.ica.OOPDProcessingEngineHAN.Collision.ICollidableWithGameObjects;
 import nl.han.ica.OOPDProcessingEngineHAN.Objects.GameObject;
-import nl.han.ica.waterworld.Swordfish;
 import processing.core.PGraphics;
 
 import java.util.List;
