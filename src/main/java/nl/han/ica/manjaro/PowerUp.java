@@ -4,6 +4,7 @@ import java.util.Timer;
 import nl.han.ica.OOPDProcessingEngineHAN.Alarm.Alarm;
 import nl.han.ica.OOPDProcessingEngineHAN.Alarm.IAlarmListener;
 
+
 public abstract class PowerUp implements IAlarmListener {
 
 	private int cooldown;
@@ -25,6 +26,9 @@ public abstract class PowerUp implements IAlarmListener {
 		}
 		
 		startAlarm(); // reset the cooldown
+		if(!ready)
+			return;
+		startAlarm();
 	}
 
 	public void update() {
@@ -37,13 +41,18 @@ public abstract class PowerUp implements IAlarmListener {
 	    alarm.start();
 	    ready= false;
 	}
+	 
+	 public boolean isReady() {
+			return ready;
+		}
 
 	@Override
 	public void triggerAlarm(String alarmName) {
 		ready = true;
+		Alarm alarm=new Alarm(null, cooldown);
+		alarm.addTarget(this);
+		alarm.start();
+		ready= false;
 	}
-	
-	public boolean isReady() {
-		return ready;
-	}
+	 
 }
