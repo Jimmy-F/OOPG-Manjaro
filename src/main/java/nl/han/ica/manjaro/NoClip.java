@@ -14,5 +14,4 @@ public class NoClip extends PowerUp {
 		super(game, cooldown);
 		this.game = game;
 	}
-
 }

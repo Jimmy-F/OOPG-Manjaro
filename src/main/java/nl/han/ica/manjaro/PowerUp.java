@@ -27,6 +27,9 @@ public abstract class PowerUp implements IAlarmListener{
 
 	}
 	
+	public void keyPressed(int keyCode, char key) {
+	}
+	
 	 private void startAlarm() {
 		Alarm alarm=new Alarm(null, cooldown);
 		alarm.addTarget(this);
