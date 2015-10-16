@@ -3,6 +3,8 @@ package nl.han.ica.manjaro;
 import java.util.Random;
 import nl.han.ica.OOPDProcessingEngineHAN.Alarm.Alarm;
 import nl.han.ica.OOPDProcessingEngineHAN.Alarm.IAlarmListener;
+import nl.han.ica.OOPDProcessingEngineHAN.UserInput.IKeyInput;
+import processing.core.PConstants;
 
 public class PlateauSpawner implements IAlarmListener {
 
@@ -22,6 +24,7 @@ public class PlateauSpawner implements IAlarmListener {
 		this.game = game;
 		PlateauSpawner.fallSpace = fallSpace;
 		this.random = new Random();
+		
 		startAlarm();
 	}
 
@@ -79,6 +82,7 @@ public class PlateauSpawner implements IAlarmListener {
 			Matter m = new Matter(game, collectableX, (float)(travelSpeed - 0.01), -1 * random.nextInt(10));
 			game.addGameObject(m, m.getX(), (game.getHeight() -m.getSize()));
 		}
+		game.setScore(1);
 		startAlarm();
 	}
 

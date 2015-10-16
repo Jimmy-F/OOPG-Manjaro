@@ -25,7 +25,7 @@ public class Plateau extends GameObject implements ICollidableWithGameObjects {
 	public void update() {
 		if (getY() < 0 - getHeight()) {
 			game.deleteGameObject(this);
-			game.setScore(1);
+			
 		}
 	}
 

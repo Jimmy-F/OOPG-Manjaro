@@ -27,10 +27,16 @@ public class Manjaro extends GameEngine {
 	
 	private TextObject dashboardText;
 	
+	private Menu menu;
+	
+	private boolean startGame = false;
+	
+	private GameOver gameOver;
+	
+	@SuppressWarnings("unused")
 	private PlateauSpawner plateauSpawner;
 	
 	public void update() {
-
 	}
 	
 	public void setScore(int scoreValue) {
@@ -46,14 +52,27 @@ public class Manjaro extends GameEngine {
 		int worldWidth = 500;
 		int worldHeight = 700;
 		
-		createPlateauSpawner();
-		createDashboard(500,500);
-		refreshDashboard();
 		createViewWithoutViewport(worldWidth, worldHeight);
+		
 		initializePersistence();
 		
-		// Spawn the player
-		spawnPlayer();
+		
+		if (getStartGame()) {
+			createPlateauSpawner();
+			
+			createDashboard(500,500);
+			refreshDashboard();
+			
+			
+			
+			spawnPlayer();
+		}
+		
+		if (!getStartGame()) {
+			menu = new Menu(this);
+			addGameObject(menu);
+		}
+		
 
 	}
 
@@ -90,27 +109,24 @@ public class Manjaro extends GameEngine {
 		addDashboard(dashboard);
 	}
 	
+	public int getHighscore() {
+		return this.highscore;
+	}
+	
 	public void gameOver() {
 		if (score >= highscore) {
 			persistence.saveData(Integer.toString(score));
 			highscore = score;
 		}
-		Dashboard gameover = new Dashboard(0,0, getWidth(), getHeight());
-		
-		TextObject highscoreText = new TextObject("", 20);
-		highscoreText.setText("Highscore: " + highscore);
-		gameover.addGameObject(highscoreText, 100, 100);
-		
-		TextObject yourscoreText = new TextObject("", 20);
-		yourscoreText.setText("Your score: " + score);
-		gameover.addGameObject(yourscoreText, 100, 200);
-		
-		gameover.setBackground(255, 255, 255);
-		addDashboard(gameover);
+		gameOver = new GameOver(this);
+		addGameObject(gameOver);
 		score = 0;
+	}
+	
+	public void resetGame() {
+		score = 0;
+		this.deleteAllDashboards();
 		this.deleteAllGameOBjects();
-		//this.deleteAllDashboards();	
-		//setupGame();
 	}
 	
 	public void refreshDashboard() {
@@ -121,4 +137,13 @@ public class Manjaro extends GameEngine {
 		player = new Player(this, 25);
 		addGameObject(player, 100, 100);
 	}
+
+	public boolean getStartGame() {
+		return startGame;
+	}
+
+	public void setStartGame(boolean startGame) {
+		this.startGame = startGame;
+	}
+	
 }
