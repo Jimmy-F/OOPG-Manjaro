@@ -33,7 +33,6 @@ public class Manjaro extends GameEngine {
 	
 	private GameOver gameOver;
 	
-	@SuppressWarnings("unused")
 	private PlateauSpawner plateauSpawner;
 	
 	public void update() {
@@ -59,11 +58,8 @@ public class Manjaro extends GameEngine {
 		
 		if (getStartGame()) {
 			createPlateauSpawner();
-			
 			createDashboard(500,500);
 			refreshDashboard();
-			
-			
 			
 			spawnPlayer();
 		}
@@ -81,14 +77,14 @@ public class Manjaro extends GameEngine {
 	 */
 	public void createPlateauSpawner() {
 		if (!spawner) {
-			plateauSpawner = new PlateauSpawner(this, 1, 150);
+			setPlateauSpawner(new PlateauSpawner(this, 1, 150));
 			spawner = true;
 		}
 	}
 	
 	public void createViewWithoutViewport(int screenWidth, int screenHeight) {
 		View view = new View(screenWidth, screenHeight);
-		view.setBackground(100,100,100);
+		view.setBackground(loadImage("src/main/java/nl/han/ica/manjaro/media/background.jpg"));
 		setView(view);
 		size(screenWidth, screenHeight);
 	}
@@ -127,6 +123,8 @@ public class Manjaro extends GameEngine {
 		score = 0;
 		this.deleteAllDashboards();
 		this.deleteAllGameOBjects();
+		this.deleteGameObject(plateauSpawner);
+		
 	}
 	
 	public void refreshDashboard() {
@@ -144,6 +142,14 @@ public class Manjaro extends GameEngine {
 
 	public void setStartGame(boolean startGame) {
 		this.startGame = startGame;
+	}
+
+	public PlateauSpawner getPlateauSpawner() {
+		return plateauSpawner;
+	}
+
+	public void setPlateauSpawner(PlateauSpawner plateauSpawner) {
+		this.plateauSpawner = plateauSpawner;
 	}
 	
 }

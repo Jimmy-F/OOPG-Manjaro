@@ -40,6 +40,7 @@ public class Menu extends GameObject {
 	}
 	public void keyPressed(int keyCode, char key) {
         if (keyCode == PConstants.ENTER) {
+        	game.setPlateauSpawner(null);
         	game.setStartGame(true);
         	game.deleteAllDashboards();
             game.resetGame();

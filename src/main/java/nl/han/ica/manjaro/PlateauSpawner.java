@@ -3,10 +3,10 @@ package nl.han.ica.manjaro;
 import java.util.Random;
 import nl.han.ica.OOPDProcessingEngineHAN.Alarm.Alarm;
 import nl.han.ica.OOPDProcessingEngineHAN.Alarm.IAlarmListener;
-import nl.han.ica.OOPDProcessingEngineHAN.UserInput.IKeyInput;
-import processing.core.PConstants;
+import nl.han.ica.OOPDProcessingEngineHAN.Objects.GameObject;
+import processing.core.PGraphics;
 
-public class PlateauSpawner implements IAlarmListener {
+public class PlateauSpawner extends GameObject implements IAlarmListener {
 
 	private float plateausPerSecond;
 
@@ -26,6 +26,10 @@ public class PlateauSpawner implements IAlarmListener {
 		this.random = new Random();
 		
 		startAlarm();
+	}
+	
+	public void setFallSpace(float fallSpace) {
+		PlateauSpawner.fallSpace = fallSpace;
 	}
 
 	public void setTravelSpeed(float travelSpeed) {
@@ -62,8 +66,10 @@ public class PlateauSpawner implements IAlarmListener {
 		
 		game.addGameObject(p1, 0, game.getHeight());
 		game.addGameObject(p2, (plateauSize + fallSpace), game.getHeight());
+		
 		travelSpeed += 0.015;
 		plateausPerSecond += 0.012;
+		
 		if (fallSpace > 40)
 			fallSpace -= 0.8;
 		if (spawnCollectable == 1 && !spawnMatter && !collectableLeftSide) {
@@ -84,6 +90,18 @@ public class PlateauSpawner implements IAlarmListener {
 		}
 		game.setScore(1);
 		startAlarm();
+	}
+
+	@Override
+	public void update() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void draw(PGraphics g) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }
