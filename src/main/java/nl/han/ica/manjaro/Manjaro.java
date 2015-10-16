@@ -113,7 +113,6 @@ public class Manjaro extends GameEngine {
 		//setupGame();
 	}
 	
-
 	public void refreshDashboard() {
 		dashboardText.setText("Score: " + score);
 	}
