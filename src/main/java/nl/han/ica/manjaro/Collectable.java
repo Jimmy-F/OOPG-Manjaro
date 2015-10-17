@@ -54,7 +54,6 @@ public abstract class Collectable extends GameObject implements ICollidableWithG
 				game.refreshDashboard();
 			}
 		}
-		
 	}
 
 	@Override

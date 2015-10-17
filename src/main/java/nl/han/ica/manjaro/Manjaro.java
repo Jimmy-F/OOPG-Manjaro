@@ -10,11 +10,7 @@ import processing.core.PApplet;
 
 @SuppressWarnings("serial")
 public class Manjaro extends GameEngine {
-	
-	public static void main(String[] args) {
-        PApplet.main(new String[]{"nl.han.ica.manjaro.Manjaro"});
-    }
-	
+
 	boolean spawner = false;
 
 	private Player player;
@@ -34,6 +30,10 @@ public class Manjaro extends GameEngine {
 	private GameOver gameOver;
 	
 	private PlateauSpawner plateauSpawner;
+	
+	public static void main(String[] args) {
+        PApplet.main(new String[]{"nl.han.ica.manjaro.Manjaro"});
+    }
 	
 	public void update() {
 	}
@@ -69,7 +69,13 @@ public class Manjaro extends GameEngine {
 			addGameObject(menu);
 		}
 		
-
+		// powerups
+		SpeedUp speedup = new SpeedUp(player, 10, 'q', 10);
+		NoClip noclip = new NoClip(player, 10, 'w', 5);
+		Multiplier multiplier = new Multiplier(plateauSpawner, 10, 5, 10, 'e');
+		addGameObject(noclip);
+		addGameObject(speedup);
+		addGameObject(multiplier);
 	}
 
 	/**
@@ -124,7 +130,6 @@ public class Manjaro extends GameEngine {
 		this.deleteAllDashboards();
 		this.deleteAllGameOBjects();
 		this.deleteGameObject(plateauSpawner);
-		
 	}
 	
 	public void refreshDashboard() {

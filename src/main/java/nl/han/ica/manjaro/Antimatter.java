@@ -17,6 +17,4 @@ public class Antimatter extends Collectable implements ICollidableWithGameObject
 		g.fill(0,0,255);
 		g.ellipse(getPosX(), getY(), getWidth(), getHeight());
 	}
-
-
 }

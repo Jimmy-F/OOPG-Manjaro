@@ -1,61 +1,48 @@
 package nl.han.ica.manjaro;
-import java.util.Timer;
 
 import nl.han.ica.OOPDProcessingEngineHAN.Alarm.Alarm;
 import nl.han.ica.OOPDProcessingEngineHAN.Alarm.IAlarmListener;
+import nl.han.ica.OOPDProcessingEngineHAN.Objects.GameObject;
 
-
-public abstract class PowerUp implements IAlarmListener {
+public abstract class PowerUp extends GameObject implements IAlarmListener {
 
 	private int cooldown;
 	
 	private boolean ready;
 
-	private Manjaro manjaro;
-
-
-	public PowerUp(Manjaro game, int cooldown) {
-		this.manjaro = game;
+	public PowerUp(int cooldown) {
 		this.cooldown = cooldown;
-		ready = false;
+		ready = true;
 	}
 
 	public void activate() {
 		if(!ready) {
+			System.out.println("Not ready yet");
 			return;
 		}
-		
+		System.out.println("Activated");
 		startAlarm(); // reset the cooldown
-		if(!ready)
-			return;
-		startAlarm();
 	}
 
 	public void update() {
-
 	}
 	
-	public void keyPressed(int keyCode, char key) {
-	}
-	
-	 private void startAlarm() {
-	    Alarm alarm=new Alarm(null, cooldown);
+	private void startAlarm() {
+	    Alarm alarm=new Alarm("cooldown", cooldown);
 	    alarm.addTarget(this);
 	    alarm.start();
 	    ready= false;
 	}
 	 
-	 public boolean isReady() {
+	public boolean isReady() {
 			return ready;
-		}
+	}
+	
+	public void setReady(boolean ready) {
+		this.ready = ready;
+	}
 
 	@Override
 	public void triggerAlarm(String alarmName) {
-		ready = true;
-		Alarm alarm=new Alarm(null, cooldown);
-		alarm.addTarget(this);
-		alarm.start();
-		ready= false;
 	}
-	 
 }

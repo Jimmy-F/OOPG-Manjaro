@@ -3,18 +3,23 @@ package nl.han.ica.manjaro;
 import nl.han.ica.OOPDProcessingEngineHAN.Alarm.Alarm;
 import processing.core.PGraphics;
 
-public class NoClip extends PowerUp {
-	
+public class Multiplier extends PowerUp {
+
 	private int duration;
 	
 	private char key;
-
-	private Player player;
+	
+	private int originalMultiplier;
+	
+	private int multiplier;
+	
+	private PlateauSpawner platSpawner;
 	
 	public void activate() {
 		if(super.isReady()) {
 			// Activate the powerup.
-			player.setCollisionOn(false);
+			originalMultiplier = platSpawner.getScoreMultiplier();
+			platSpawner.setScoreMultiplier(multiplier);
 			startAlarm();
 			super.activate();
 		} else{
@@ -28,11 +33,12 @@ public class NoClip extends PowerUp {
 		}
 	}
 	
-	public NoClip(Player player, int cooldown, char key, int duration) {
+	public Multiplier(PlateauSpawner platSpawner, int multiplier, int duration, int cooldown, char key) {
 		super(cooldown);
 		this.key = key;
 		this.duration = duration;
-		this.player = player;
+		this.platSpawner = platSpawner;
+		this.multiplier = multiplier;
 	}
 
 	private void startAlarm() {
@@ -43,8 +49,8 @@ public class NoClip extends PowerUp {
 	
 	public void triggerAlarm(String alarmName) {
 		if(alarmName == "duration") {
-			// Turn off noclip
-			player.setCollisionOn(true);
+			// Turn off multiplier
+			platSpawner.setScoreMultiplier(originalMultiplier);
 			System.out.println("De-activated");
 		} else if (alarmName == "cooldown") {
 			super.setReady(true);

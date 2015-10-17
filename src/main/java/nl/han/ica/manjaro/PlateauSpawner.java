@@ -17,9 +17,12 @@ public class PlateauSpawner extends GameObject implements IAlarmListener {
 	private static float fallSpace;
 
 	private Manjaro game;
+	
+	private int scoreMultiplier;
 
 	public PlateauSpawner(Manjaro game, float plateausPerSecond, float fallSpace) {
 		this.plateausPerSecond = plateausPerSecond;
+		scoreMultiplier = 1;
 		PlateauSpawner.travelSpeed = 1;
 		this.game = game;
 		PlateauSpawner.fallSpace = fallSpace;
@@ -45,7 +48,6 @@ public class PlateauSpawner extends GameObject implements IAlarmListener {
 		alarm.addTarget(this);
 		alarm.start();
 	}
-	
 	
 	@Override
 	public void triggerAlarm(String alarmName) {
@@ -88,20 +90,25 @@ public class PlateauSpawner extends GameObject implements IAlarmListener {
 			Matter m = new Matter(game, collectableX, (float)(travelSpeed - 0.01), -1 * random.nextInt(10));
 			game.addGameObject(m, m.getX(), (game.getHeight() -m.getSize()));
 		}
-		game.setScore(1);
+		game.setScore(scoreMultiplier);
 		startAlarm();
 	}
 
+	public int getScoreMultiplier() {
+		return scoreMultiplier;
+	}
+	
+	public void setScoreMultiplier(int scoreMultiplier) {
+		this.scoreMultiplier = scoreMultiplier;
+	}
+	
 	@Override
 	public void update() {
 		// TODO Auto-generated method stub
-		
 	}
 
 	@Override
 	public void draw(PGraphics g) {
 		// TODO Auto-generated method stub
-		
 	}
-
 }
