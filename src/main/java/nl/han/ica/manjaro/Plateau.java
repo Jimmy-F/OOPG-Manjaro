@@ -6,9 +6,8 @@ import nl.han.ica.OOPDProcessingEngineHAN.Objects.GameObject;
 import processing.core.PGraphics;
 
 /**
- * 
+ * Plateau object.
  * @author Jimmy
- * @version 1.0
  */
 public class Plateau extends GameObject implements ICollidableWithGameObjects {
 

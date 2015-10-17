@@ -31,13 +31,12 @@ public class Menu extends GameObject {
 
 	@Override
 	public void update() {
-		// TODO Auto-generated method stub
 	}
 
 	@Override
 	public void draw(PGraphics g) {
-		// TODO Auto-generated method stub	
 	}
+	
 	public void keyPressed(int keyCode, char key) {
         if (keyCode == PConstants.ENTER) {
         	game.setPlateauSpawner(null);

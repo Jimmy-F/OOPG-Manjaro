@@ -8,6 +8,12 @@ import nl.han.ica.OOPDProcessingEngineHAN.Persistence.IPersistence;
 import nl.han.ica.OOPDProcessingEngineHAN.View.View;
 import processing.core.PApplet;
 
+/**
+ * Main class.
+ * @author Jimmy Feltsadas.
+ * @author Jonathan Daniel.
+ * @version 0.1
+ */
 @SuppressWarnings("serial")
 public class Manjaro extends GameEngine {
 
@@ -44,15 +50,26 @@ public class Manjaro extends GameEngine {
 	public void update() {
 	}
 	
+	/**
+	 * Increase the score. 
+	 * @param scoreValue the value to increase the score by.
+	 */
 	public void setScore(int scoreValue) {
 		score += scoreValue;
 		refreshDashboard();
 	}
 	
+	/**
+	 * Get current score. 
+	 * @return Current score.
+	 */
 	public int getScore() {
 		return score;
 	}
 
+	/**
+	 * Setup method of the game.
+	 */
 	public void setupGame() {
 		final int worldWidth = 500;
 		final int worldHeight = 700;
@@ -63,7 +80,7 @@ public class Manjaro extends GameEngine {
 		
 		if (getStartGame()) {
 			createPlateauSpawner();
-			createDashboard(500,500);
+			createDashboard(worldWidth, worldHeight);
 			refreshDashboard();
 			
 			spawnPlayer();
@@ -100,7 +117,7 @@ public class Manjaro extends GameEngine {
 	}
 
 	/**
-	 * Maakt de plateau spawner aan
+	 * Initialises the plateau spawner.
 	 */
 	public void createPlateauSpawner() {
 		if (!spawner) {
@@ -109,6 +126,11 @@ public class Manjaro extends GameEngine {
 		}
 	}
 	
+	/**
+	 * Creates a view without viewport.
+	 * @param screnWidth the width.
+	 * @param screenHeight the height.
+	 */
 	public void createViewWithoutViewport(int screenWidth, int screenHeight) {
 		View view = new View(screenWidth, screenHeight);
 		view.setBackground(loadImage("src/main/java/nl/han/ica/manjaro/media/background.jpg"));
@@ -116,7 +138,9 @@ public class Manjaro extends GameEngine {
 		size(screenWidth, screenHeight);
 	}
 
-
+	/**
+	 * Initialises the FilePersistence object.
+	 */
 	public void initializePersistence() {
 		persistence = new FilePersistence("main/java/nl/han/ica/manjaro/highscores/highscores.txt");
 		if (persistence.fileExists()) {
@@ -124,6 +148,11 @@ public class Manjaro extends GameEngine {
 		}
 	}
 
+	/**
+	 * Initialises dashboard and text objects.
+	 * @param width the width of the dashboard.
+	 * @param height the height of the dashboard.
+	 */
 	public void createDashboard(int width, int height) {
 		Dashboard dashboard = new Dashboard(0,0, width, height);
 		
@@ -151,10 +180,17 @@ public class Manjaro extends GameEngine {
 		addDashboard(dashboard);
 	}
 	
+	/**
+	 * Get the highscore.
+	 * @return the highscore.
+	 */
 	public int getHighscore() {
 		return this.highscore;
 	}
 	
+	/**
+	 * Turn on the game over screen.
+	 */
 	public void gameOver() {
 		if (score >= highscore) {
 			persistence.saveData(Integer.toString(score));
@@ -165,6 +201,9 @@ public class Manjaro extends GameEngine {
 		score = 0;
 	}
 	
+	/**
+	 * Reset the game and its objects.
+	 */
 	public void resetGame() {
 		score = 0;
 		this.deleteAllDashboards();
@@ -172,27 +211,50 @@ public class Manjaro extends GameEngine {
 		this.deleteGameObject(plateauSpawner);
 	}
 	
+	/**
+	 * Update dashboard text for the score.
+	 */
 	public void refreshDashboard() {
 		dashboardText.setText("Score: " + score);
 	}
 	
+	/**
+	 * Spawns a new player.
+	 */
 	public void spawnPlayer() {
+		final int position = 100;
 		player = new Player(this, 25);
-		addGameObject(player, 100, 100);
+		addGameObject(player, position, position);
 	}
 
+	/**
+	 * Check if startGame is true.
+	 * @return startGame status.
+	 */
 	public boolean getStartGame() {
 		return startGame;
 	}
 
+	/**
+	 * Set startGame status.
+	 * @param startGame status to set (true or false).
+	 */
 	public void setStartGame(boolean startGame) {
 		this.startGame = startGame;
 	}
 
+	/**
+	 * Get the plateauSpawner object.
+	 * @return the plateauSpawner object.
+	 */
 	public PlateauSpawner getPlateauSpawner() {
 		return plateauSpawner;
 	}
 
+	/**
+	 * Set the plateauSpawner object.
+	 * @param plateauSpawner the new plateauSpawner or null.
+	 */
 	public void setPlateauSpawner(PlateauSpawner plateauSpawner) {
 		this.plateauSpawner = plateauSpawner;
 	}	

@@ -7,8 +7,8 @@ import processing.core.PGraphics;
 import java.util.List;
 
 /**
+ * This is the player.
  * @author Jonathan Daniel
- * Dit is de speler (een bal).
  */
 public class Player extends GameObject implements ICollidableWithGameObjects {
 
@@ -16,7 +16,7 @@ public class Player extends GameObject implements ICollidableWithGameObjects {
 
 	private Manjaro game;
 	
-	private boolean collisionOn; // For the noclip powerup
+	private boolean collisionOn; // For the noclip powerup.
 	
 	private int speed;
 
@@ -43,7 +43,8 @@ public class Player extends GameObject implements ICollidableWithGameObjects {
 
 	/**
      * Constructor
-     * @param world Referentie naar de wereld
+     * @param game Reference to the game object.
+     * @param size The size of the ball.
      */
 	public Player(Manjaro game, int size) {
 		this.game = game;
@@ -89,18 +90,34 @@ public class Player extends GameObject implements ICollidableWithGameObjects {
         g.ellipse(getX(), getY(), size, size);
 	}
 
+	/**
+	 * Checks if collision is turned on.
+	 * @return collision status (on/off).
+	 */
 	public boolean isCollisionOn() {
 		return collisionOn;
 	}
 
+	/**
+	 * Set collision on/off.
+	 * @param scollisionOn collision status.
+	 */
 	public void setCollisionOn(boolean collisionOn) {
 		this.collisionOn = collisionOn;
 	}
 	
+	/**
+	 * Get the current speed.
+	 * @return current speed.
+	 */
 	public int getPlayerSpeed(){
 		return speed;
 	}
 	
+	/**
+	 * Set the current speed.
+	 * @param speed current speed.
+	 */
 	public void setPlayerSpeed(int speed) {
 		this.speed = speed;
 	}
