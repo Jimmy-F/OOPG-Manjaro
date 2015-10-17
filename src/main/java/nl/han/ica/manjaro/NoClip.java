@@ -1,6 +1,7 @@
 package nl.han.ica.manjaro;
 
 import nl.han.ica.OOPDProcessingEngineHAN.Alarm.Alarm;
+import nl.han.ica.OOPDProcessingEngineHAN.Objects.TextObject;
 import processing.core.PGraphics;
 
 public class NoClip extends PowerUp {
@@ -11,15 +12,16 @@ public class NoClip extends PowerUp {
 
 	private Player player;
 	
+	private  TextObject dashText;
+	
 	public void activate() {
 		if(super.isReady()) {
 			// Activate the powerup.
+			dashText.setForeColor(255, 0, 0, 255); // Red.
 			player.setCollisionOn(false);
 			startAlarm();
 			super.activate();
-		} else{
-			System.out.println("Not ready yet");
-		}
+		} 
 	}
 
 	public void keyPressed(int keyCode, char key) {
@@ -28,11 +30,12 @@ public class NoClip extends PowerUp {
 		}
 	}
 	
-	public NoClip(Player player, int cooldown, char key, int duration) {
+	public NoClip(Player player, int cooldown, char key, int duration, TextObject dashText) {
 		super(cooldown);
 		this.key = key;
 		this.duration = duration;
 		this.player = player;
+		this.dashText = dashText;
 	}
 
 	private void startAlarm() {
@@ -45,10 +48,9 @@ public class NoClip extends PowerUp {
 		if(alarmName == "duration") {
 			// Turn off noclip
 			player.setCollisionOn(true);
-			System.out.println("De-activated");
 		} else if (alarmName == "cooldown") {
 			super.setReady(true);
-			System.out.println("Cooldown over");
+			dashText.setForeColor(0, 255, 0, 255); // Green.
 		}
 	}
 	

@@ -23,6 +23,12 @@ public class Manjaro extends GameEngine {
 	
 	private TextObject dashboardText;
 	
+	private TextObject powerupTextq;
+	
+	private TextObject powerupTextw;
+	
+	private TextObject powerupTexte;
+	
 	private Menu menu;
 	
 	private boolean startGame = false;
@@ -48,13 +54,12 @@ public class Manjaro extends GameEngine {
 	}
 
 	public void setupGame() {
-		int worldWidth = 500;
-		int worldHeight = 700;
+		final int worldWidth = 500;
+		final int worldHeight = 700;
 		
 		createViewWithoutViewport(worldWidth, worldHeight);
 		
 		initializePersistence();
-		
 		
 		if (getStartGame()) {
 			createPlateauSpawner();
@@ -69,10 +74,26 @@ public class Manjaro extends GameEngine {
 			addGameObject(menu);
 		}
 		
-		// powerups
-		SpeedUp speedup = new SpeedUp(player, 10, 'q', 10);
-		NoClip noclip = new NoClip(player, 10, 'w', 5);
-		Multiplier multiplier = new Multiplier(plateauSpawner, 10, 5, 10, 'e');
+		// Powerups.
+		SpeedUp speedup = new SpeedUp(player, // Player object.
+									  10, // Cooldown.
+									  'q', // Key binding.
+									  10, // Speed when activated.
+									  6, // Duration.
+									  powerupTextq); // Dashboard text object.
+		
+		NoClip noclip = new NoClip(player, // Player object.
+								   10, // Cooldown.
+								   'w', // Key binding.
+								   5, // Duration.
+								   powerupTextw); // Dashboard text object.
+		
+		Multiplier multiplier = new Multiplier(plateauSpawner, // PlaateauSpawner object.
+											   10, // Cooldown.
+											   'e', // Key binding.
+											   10, // Multiplier.
+											   5, // Duration.
+											   powerupTexte); // Dashboard text object.
 		addGameObject(noclip);
 		addGameObject(speedup);
 		addGameObject(multiplier);
@@ -105,9 +126,28 @@ public class Manjaro extends GameEngine {
 
 	public void createDashboard(int width, int height) {
 		Dashboard dashboard = new Dashboard(0,0, width, height);
-		dashboardText = new TextObject("", 20);
+		
+		final int fontSize = 20;
+		dashboardText = new TextObject("", fontSize);
+		powerupTextq = new TextObject("", fontSize);
+		powerupTextw = new TextObject("", fontSize);
+		powerupTexte = new TextObject("", fontSize);
+		
 		dashboardText.setText("iets");
+		powerupTextq.setText("Q");
+		powerupTextw.setText("W");
+		powerupTexte.setText("E");
+		
+		// Set the powerup texts to color green.
+		powerupTextq.setForeColor(0, 255, 0, 255);
+		powerupTextw.setForeColor(0, 255, 0, 255);
+		powerupTexte.setForeColor(0, 255, 0, 255);
+		
 		dashboard.addGameObject(dashboardText, 300, 40);
+		dashboard.addGameObject(powerupTextq, 40, 40);
+		dashboard.addGameObject(powerupTextw, 40, 80);
+		dashboard.addGameObject(powerupTexte, 40, 120);
+		
 		addDashboard(dashboard);
 	}
 	
@@ -155,6 +195,5 @@ public class Manjaro extends GameEngine {
 
 	public void setPlateauSpawner(PlateauSpawner plateauSpawner) {
 		this.plateauSpawner = plateauSpawner;
-	}
-	
+	}	
 }

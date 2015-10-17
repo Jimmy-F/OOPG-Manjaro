@@ -61,19 +61,18 @@ public class Player extends GameObject implements ICollidableWithGameObjects {
 
 	@SuppressWarnings("static-access")
 	public void keyPressed(int keyCode, char key) {
-        if (keyCode == game.LEFT) {
+        if (keyCode == game.LEFT) 
             setDirectionSpeed(270, speed);
-        }
-        if (keyCode == game.RIGHT) {
+        
+        if (keyCode == game.RIGHT) 
             setDirectionSpeed(90, speed);
-        }
 	}
 
 	@Override
     public void gameObjectCollisionOccurred(List<GameObject> collidedGameObjects) {
         for (GameObject g:collidedGameObjects) {
             if (g instanceof Plateau) {
-            	if(collisionOn)
+            	if(collisionOn) 
             		setY(g.getY()-25);
             	else // NoClip powerup is turned on
             		setY(g.getY()+25);
@@ -84,7 +83,7 @@ public class Player extends GameObject implements ICollidableWithGameObjects {
 	@SuppressWarnings("static-access")
 	@Override
 	public void draw(PGraphics g) {
-		g.ellipseMode(g.CORNER); // Omdat cirkel anders vanuit midden wordt getekend en dat problemen geeft bij collisiondetectie.
+		g.ellipseMode(g.CORNER); // Omdat de cirkel anders vanuit het midden wordt getekend en dat problemen oplevert bij collisiondetectie.
         g.stroke(255, 25, 22, 72);
         g.fill(255, 18, 18, 90);
         g.ellipse(getX(), getY(), size, size);

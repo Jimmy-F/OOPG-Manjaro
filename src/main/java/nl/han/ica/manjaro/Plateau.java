@@ -4,13 +4,13 @@ import java.util.List;
 import nl.han.ica.OOPDProcessingEngineHAN.Collision.ICollidableWithGameObjects;
 import nl.han.ica.OOPDProcessingEngineHAN.Objects.GameObject;
 import processing.core.PGraphics;
+
 /**
  * 
  * @author Jimmy
  * @version 1.0
  */
 public class Plateau extends GameObject implements ICollidableWithGameObjects {
-
 
 	private float travelspeed;
 
@@ -19,6 +19,7 @@ public class Plateau extends GameObject implements ICollidableWithGameObjects {
 	private boolean leftPlateau;
 
 	private float coordinate;
+	
 	/**
 	 * 
 	 */
@@ -75,5 +76,4 @@ public class Plateau extends GameObject implements ICollidableWithGameObjects {
 		else
 			g.rect(coordinate, getY(), getWidth(), getHeight());
 	}
-
 }

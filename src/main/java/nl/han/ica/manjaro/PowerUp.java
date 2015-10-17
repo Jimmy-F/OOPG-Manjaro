@@ -16,12 +16,10 @@ public abstract class PowerUp extends GameObject implements IAlarmListener {
 	}
 
 	public void activate() {
-		if(!ready) {
-			System.out.println("Not ready yet");
+		if(!ready) 
 			return;
-		}
-		System.out.println("Activated");
-		startAlarm(); // reset the cooldown
+		
+		startAlarm(); // Reset the cooldown.
 	}
 
 	public void update() {

@@ -31,7 +31,6 @@ public abstract class Collectable extends GameObject implements ICollidableWithG
 		return posX;
 	}
 
-
 	public void update() {
 		if (getY() < 0 - getHeight())
 			game.deleteGameObject(this);
@@ -63,5 +62,4 @@ public abstract class Collectable extends GameObject implements ICollidableWithG
 		g.fill(255,0,0);
 		g.ellipse(posX, getY(), getWidth(), getHeight());
 	}
-
 }

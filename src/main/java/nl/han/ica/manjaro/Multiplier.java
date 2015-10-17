@@ -1,6 +1,7 @@
 package nl.han.ica.manjaro;
 
 import nl.han.ica.OOPDProcessingEngineHAN.Alarm.Alarm;
+import nl.han.ica.OOPDProcessingEngineHAN.Objects.TextObject;
 import processing.core.PGraphics;
 
 public class Multiplier extends PowerUp {
@@ -13,17 +14,18 @@ public class Multiplier extends PowerUp {
 	
 	private int multiplier;
 	
+	private TextObject dashText;
+	
 	private PlateauSpawner platSpawner;
 	
 	public void activate() {
 		if(super.isReady()) {
 			// Activate the powerup.
+			dashText.setForeColor(255, 0, 0, 255); // Red.
 			originalMultiplier = platSpawner.getScoreMultiplier();
 			platSpawner.setScoreMultiplier(multiplier);
 			startAlarm();
 			super.activate();
-		} else{
-			System.out.println("Not ready yet");
 		}
 	}
 
@@ -33,12 +35,13 @@ public class Multiplier extends PowerUp {
 		}
 	}
 	
-	public Multiplier(PlateauSpawner platSpawner, int multiplier, int duration, int cooldown, char key) {
+	public Multiplier(PlateauSpawner platSpawner, int cooldown, char key, int multiplier, int duration, TextObject dashText) {
 		super(cooldown);
 		this.key = key;
 		this.duration = duration;
 		this.platSpawner = platSpawner;
 		this.multiplier = multiplier;
+		this.dashText = dashText;
 	}
 
 	private void startAlarm() {
@@ -51,10 +54,9 @@ public class Multiplier extends PowerUp {
 		if(alarmName == "duration") {
 			// Turn off multiplier
 			platSpawner.setScoreMultiplier(originalMultiplier);
-			System.out.println("De-activated");
 		} else if (alarmName == "cooldown") {
+			dashText.setForeColor(0, 255, 0, 255); // Green.
 			super.setReady(true);
-			System.out.println("Cooldown over");
 		}
 	}
 	

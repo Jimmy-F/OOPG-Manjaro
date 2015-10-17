@@ -2,6 +2,7 @@ package nl.han.ica.manjaro;
 
 import nl.han.ica.OOPDProcessingEngineHAN.Alarm.Alarm;
 import nl.han.ica.OOPDProcessingEngineHAN.Alarm.IAlarmListener;
+import nl.han.ica.OOPDProcessingEngineHAN.Objects.TextObject;
 import processing.core.PGraphics;
 
 public class SpeedUp extends PowerUp implements IAlarmListener {
@@ -14,19 +15,20 @@ public class SpeedUp extends PowerUp implements IAlarmListener {
 	
 	private Player player;
 	
+	private TextObject dashText;
+	
 	private char key;
 	
 	public void activate() {
 		if(super.isReady()) {
 			// Activate the powerup.
+			dashText.setForeColor(255, 0, 0, 255); // Red.
 			originalSpeed = player.getPlayerSpeed();
 			System.out.println(originalSpeed);
 			player.setPlayerSpeed(speedValue);
 			startAlarm();
 			super.activate();
-		} else{
-			System.out.println("Not ready yet");
-		}
+		} 
 	}
 
 	public void keyPressed(int keyCode, char key) {
@@ -35,12 +37,13 @@ public class SpeedUp extends PowerUp implements IAlarmListener {
 		}
 	}
 	
-	public SpeedUp(Player player, int cooldown, char key, int speedValue) {
+	public SpeedUp(Player player, int cooldown, char key, int speedValue, int duration, TextObject dashText) {
 		super(cooldown);
 		this.key = key;
 		this.speedValue = speedValue;
 		this.player = player;
-		duration = 6;
+		this.dashText = dashText;
+		this.duration = duration;
 	}
 
 	@Override
@@ -56,10 +59,9 @@ public class SpeedUp extends PowerUp implements IAlarmListener {
 	public void triggerAlarm(String alarmName) {
 		if(alarmName == "duration") {
 			player.setPlayerSpeed(originalSpeed);
-			System.out.println("De-activated");
 		} else if (alarmName == "cooldown") {
 			super.setReady(true);
-			System.out.println("Cooldown over");
+			dashText.setForeColor(0, 255, 0, 255); // Green.
 		}
 	}
 }
