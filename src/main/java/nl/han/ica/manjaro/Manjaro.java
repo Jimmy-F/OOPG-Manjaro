@@ -12,7 +12,7 @@ import processing.core.PApplet;
  * Main class.
  * @author Jimmy Feltsadas.
  * @author Jonathan Daniel.
- * @version 0.1
+ * @version 0.2
  */
 @SuppressWarnings("serial")
 public class Manjaro extends GameEngine {
@@ -111,6 +111,8 @@ public class Manjaro extends GameEngine {
 											   10, // Multiplier.
 											   5, // Duration.
 											   powerupTexte); // Dashboard text object.
+		
+		
 		addGameObject(noclip);
 		addGameObject(speedup);
 		addGameObject(multiplier);
@@ -208,7 +210,11 @@ public class Manjaro extends GameEngine {
 		score = 0;
 		this.deleteAllDashboards();
 		this.deleteAllGameOBjects();
-		this.deleteGameObject(plateauSpawner);
+		if (spawner) {
+			plateauSpawner.setFallSpace(150);
+			plateauSpawner.setTravelSpeed(1);
+			plateauSpawner.setPlateausPerSecond(1);
+		}
 	}
 	
 	/**

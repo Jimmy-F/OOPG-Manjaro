@@ -7,11 +7,12 @@ import processing.core.PGraphics;
 
 /**
  * Plateau object.
- * @author Jimmy
+ * @author Jimmy Feltsadas
  */
 public class Plateau extends GameObject implements ICollidableWithGameObjects {
 
-	private float travelspeed;
+	
+	private float travelspeed; 
 
 	private Manjaro game;
 	
@@ -20,7 +21,7 @@ public class Plateau extends GameObject implements ICollidableWithGameObjects {
 	private float coordinate;
 	
 	/**
-	 * 
+	 * Deletes plateau if it reaches the top
 	 */
 	public void update() {
 		if (getY() < 0 - getHeight()) {
@@ -30,9 +31,10 @@ public class Plateau extends GameObject implements ICollidableWithGameObjects {
 
 	/**
 	 * 
-	 * @param game zet de plateau in game
-	 * @param size Breedte van de plateau
-	 * @param travelspeed Snelheid waarmee de plateau omhoog gaat
+	 * @param game Reference to the game object
+	 * @param size Width of the plateau
+	 * @param travelspeed travelspeed of the plateau
+	 * @param leftPlateau left or right plateau
 	 */
 	public Plateau(Manjaro game, int size, float travelspeed, boolean leftPlateau) {
 		this.game = game;
@@ -43,6 +45,14 @@ public class Plateau extends GameObject implements ICollidableWithGameObjects {
 		setWidth(size);
 	}
 	
+	/**
+	 * 
+	 * @param game Reference to the game object
+	 * @param size Width of the plateau
+	 * @param travelspeed travelspeed of the plateau
+	 * @param leftPlateau left or right plateau
+	 * @param coordinate beginning of the plateau
+	 */
 	public Plateau(Manjaro game, int size, float travelspeed, boolean leftPlateau, float coordinate) {
 		this.game = game;
 		this.travelspeed = travelspeed;
@@ -55,7 +65,7 @@ public class Plateau extends GameObject implements ICollidableWithGameObjects {
 
 	/**
 	 * 
-	 * @return Geeft de travelspeed van dit object terug
+	 * @return returns travelspeed
 	 */
 	public float getTravelSpeed() {
 		return this.travelspeed;
@@ -63,10 +73,11 @@ public class Plateau extends GameObject implements ICollidableWithGameObjects {
 
 	@Override
 	public void gameObjectCollisionOccurred(List<GameObject> collidedGameObjects) {
-		// TODO Auto-generated method stub
-		
 	}
 
+	/**
+	 * Draws the plateau
+	 */
 	@Override
 	public void draw(PGraphics g) {
 		g.fill(255,255,255);

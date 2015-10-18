@@ -6,10 +6,21 @@ import nl.han.ica.OOPDProcessingEngineHAN.Objects.TextObject;
 import processing.core.PConstants;
 import processing.core.PGraphics;
 
+/**
+ * Draws the gameover screen.
+ * Uses gameObject to use the keyPressed function
+ * @author Jimmy Feltsadas
+ *
+ */
 public class GameOver extends GameObject {
 	
 	private Manjaro game;
 	
+	/**
+	 * Adds the dashboard to the game.
+	 * With the highscore and player score
+	 * @param game
+	 */
 	public GameOver(Manjaro game) {
 		this.game = game;
 		Dashboard mainMenu = new Dashboard(0, 0, game.getWidth(), game.getHeight());
@@ -44,6 +55,11 @@ public class GameOver extends GameObject {
 	public void draw(PGraphics g) {
 		// TODO Auto-generated method stub	
 	}
+	
+	/**
+	 * If backspace is pressed return to the main menu.
+	 * If enter is pressed restart the game
+	 */
 	public void keyPressed(int keyCode, char key) {
         if (keyCode == PConstants.BACKSPACE) {
         	game.setStartGame(false);

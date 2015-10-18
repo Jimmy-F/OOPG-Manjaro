@@ -6,10 +6,20 @@ import nl.han.ica.OOPDProcessingEngineHAN.Objects.TextObject;
 import processing.core.PConstants;
 import processing.core.PGraphics;
 
+/**
+ * Menu class for starting the game
+ * Extends GameObject to use the keyPressed function.
+ * @author Jimmy Feltsadas
+ *
+ */
 public class Menu extends GameObject {
 	
 	private Manjaro game;
 	
+	/**
+	 * Draws the dashboard 
+	 * @param game
+	 */
 	public Menu(Manjaro game) {
 		this.game = game;
 		Dashboard mainMenu = new Dashboard(0, 0, game.getWidth(), game.getHeight());
@@ -37,6 +47,9 @@ public class Menu extends GameObject {
 	public void draw(PGraphics g) {
 	}
 	
+	/** 
+	 * If enter is pressed start the game
+	 */
 	public void keyPressed(int keyCode, char key) {
         if (keyCode == PConstants.ENTER) {
         	game.setPlateauSpawner(null);
